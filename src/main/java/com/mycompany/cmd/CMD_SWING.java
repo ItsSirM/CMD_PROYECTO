@@ -104,12 +104,26 @@ public class CMD_SWING extends javax.swing.JFrame {
                     Logger.getLogger(CMD_SWING.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            case "rm" -> cmds.rm(partes[1]);
-            case "cd" -> {
-                if(cmds.cd(partes[1])!=null){
-                    cmds.elFile = cmds.cd(partes[1]);
+            case "rm" -> {
+                if(cmds.rm(partes[1])!=null){
                     String text = AREATEXT.getText();
+                    text += "\nFolder/Archivo eliminado exitosamente";
                     AREATEXT.setText(text+"\n"+cmds.elFile.getAbsolutePath());
+                }
+                else{
+                    String text = AREATEXT.getText();
+                    AREATEXT.setText(text+"\nNo Existe");
+                }
+            }
+            case "cd" -> {
+                if(cmds.cd(partes[1])!=true){
+                    String text = AREATEXT.getText();
+                    text += "\nTe moviste de directorio";
+                    AREATEXT.setText(text+"\n"+cmds.elFile.getAbsolutePath());
+                }
+                else{
+                    String text = AREATEXT.getText();
+                    AREATEXT.setText(text+"\nNo Existe");
                 }
             }
             case "..." -> cmds.regreso();

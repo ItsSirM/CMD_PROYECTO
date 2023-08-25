@@ -7,29 +7,31 @@ import java.util.Date;
 
 public class Comandos {
 
-    File elFile = new File("//");
+    public File elFile = new File("");
 
     public boolean mkdir(String name) {
-        elFile = new File("/" + name);
-        return elFile.mkdir();
+        elFile = new File(elFile + "/" + name);
+        return elFile.mkdirs();
     }
 
     public boolean mfile(String name) throws IOException {
-        elFile = new File("/" + name);
+        elFile = new File(elFile + "/" +name);
         return elFile.createNewFile();
     }
 
-    public boolean rm(String name) {
-        elFile = new File(name);
-        return elFile.delete();
+    public File rm(String name) {
+        elFile = new File(elFile + "/" +name);
+        elFile.delete();
+        return elFile = new File(elFile.getAbsoluteFile().getParentFile().getAbsolutePath());
     }
 
-    public File cd(String name) {
-        File file = new File("/" + name);
-        if (file.exists() == true) {
-            return new File("/" + name);
+    public boolean cd(String name) {
+        File file = new File(elFile,name);
+        if (file.exists() == true && file.isDirectory()==true) {
+            elFile = file;
+            return true;
         }
-        return null;
+        return false;
     }
 
     public File regreso() {
