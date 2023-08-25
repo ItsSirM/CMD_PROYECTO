@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.cmd;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextArea;
 
 /**
@@ -17,8 +16,9 @@ public class CMD_SWING extends javax.swing.JFrame {
      */
     public CMD_SWING() {
         initComponents();
-    }
+    }    
     
+    Comandos cmds = new Comandos();
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,15 +35,23 @@ public class CMD_SWING extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        INGRESOB.setBackground(new java.awt.Color(0, 0, 0));
+        INGRESOB.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        INGRESOB.setForeground(new java.awt.Color(0, 204, 51));
         INGRESOB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 INGRESOBActionPerformed(evt);
             }
         });
 
-        AREATEXT.setBackground(new java.awt.Color(153, 153, 153));
+        AREATEXT.setEditable(false);
+        AREATEXT.setBackground(new java.awt.Color(15, 15, 15));
         AREATEXT.setColumns(20);
+        AREATEXT.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        AREATEXT.setForeground(new java.awt.Color(0, 204, 51));
         AREATEXT.setRows(5);
+        AREATEXT.setText("BIENVENIDO AL COMANDLINE"+"\n"+cmds.elFile.getPath());
+        AREATEXT.setToolTipText("");
         jScrollPane2.setViewportView(AREATEXT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -65,7 +73,41 @@ public class CMD_SWING extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void INGRESOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INGRESOBActionPerformed
-      
+        String partes[] = INGRESOB.getText().split(" ");
+        String cmd = partes[0];
+        
+        switch(cmd){
+            case "mkdir" -> cmds.mkdir(partes[1]);
+            case "mfile" -> {
+                try {
+                    cmds.mfile(partes[1]);
+                } catch (IOException ex) {
+                    Logger.getLogger(CMD_SWING.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            case "rm" -> cmds.rm(partes[1]);
+            case "cd" -> cmds.cd(partes[1]);
+            case "..." -> cmds.regreso();
+            case "dir" -> {
+                String text = AREATEXT.getText();
+                AREATEXT.setText(text+cmds.dir());
+            }
+            case "date" -> {
+                String text = AREATEXT.getText();
+                AREATEXT.setText(text+"\n"+cmds.date());
+            }
+            case "time" -> {
+                String text = AREATEXT.getText();
+                AREATEXT.setText(text+"\n"+cmds.time());
+            }
+            case "escribir" -> cmds.escribir(cmds.elFile.getAbsolutePath(), partes[1]);
+            case "leer" -> cmds.leer(cmds.elFile.getAbsolutePath());
+            default -> {
+                String text = AREATEXT.getText();
+                text += "\nINGRESE UN COMANDO DE VERDAD";
+                AREATEXT.setText(text);
+            }
+        }   
     }//GEN-LAST:event_INGRESOBActionPerformed
 
     

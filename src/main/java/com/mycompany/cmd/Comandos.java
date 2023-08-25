@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Comandos {
 
-    File elFile = null;
+    File elFile = new File("D:");
 
     public boolean mkdir(String name) {
         elFile = new File(elFile.getAbsolutePath() + "/" + name);
@@ -40,12 +40,12 @@ public class Comandos {
         String text = " ";
         for (File child : elFile.listFiles()) {
             if (child.isDirectory()) {
-                text += "<dir>" + child.getName() + "\n";
+                text += "\n<dir>" + child.getName();
             }
         }
         for (File child : elFile.listFiles()) {
             if (child.isFile()) {
-                text += child.getName() + "\t" + child.length();
+                text += "\n"+child.getName();
             }
         }
         return text;
