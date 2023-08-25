@@ -77,16 +77,41 @@ public class CMD_SWING extends javax.swing.JFrame {
         String cmd = partes[0];
         
         switch(cmd){
-            case "mkdir" -> cmds.mkdir(partes[1]);
+            case "mkdir" -> {
+                if(cmds.mkdir(partes[1])==true){
+                    String text = AREATEXT.getText();
+                    text += "\nDireccion "+partes[1]+" creada Existosamente";
+                    AREATEXT.setText(text+"\n"+cmds.elFile.getAbsolutePath());
+                }
+                else{
+                    String text = AREATEXT.getText();
+                    AREATEXT.setText(text+"\nError al crear directorio");
+                }
+                    
+            }
             case "mfile" -> {
                 try {
-                    cmds.mfile(partes[1]);
+                    if(cmds.mfile(partes[1])==true){
+                        String text = AREATEXT.getText();
+                        text += "\nArchivo "+partes[1]+" creado Existosamente";
+                        AREATEXT.setText(text+"\n"+cmds.elFile.getAbsolutePath());
+                    }
+                    else{
+                        String text = AREATEXT.getText();
+                        AREATEXT.setText(text+"\nError al crear Archivo");
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(CMD_SWING.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             case "rm" -> cmds.rm(partes[1]);
-            case "cd" -> cmds.cd(partes[1]);
+            case "cd" -> {
+                if(cmds.cd(partes[1])!=null){
+                    cmds.elFile = cmds.cd(partes[1]);
+                    String text = AREATEXT.getText();
+                    AREATEXT.setText(text+"\n"+cmds.elFile.getAbsolutePath());
+                }
+            }
             case "..." -> cmds.regreso();
             case "dir" -> {
                 String text = AREATEXT.getText();

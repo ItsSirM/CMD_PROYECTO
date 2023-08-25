@@ -7,15 +7,15 @@ import java.util.Date;
 
 public class Comandos {
 
-    File elFile = new File("D:");
+    File elFile = new File("//");
 
     public boolean mkdir(String name) {
-        elFile = new File(elFile.getAbsolutePath() + "/" + name);
-        return elFile.mkdirs();
+        elFile = new File("/" + name);
+        return elFile.mkdir();
     }
 
     public boolean mfile(String name) throws IOException {
-        elFile = new File(elFile.getAbsolutePath() + "/" + name);
+        elFile = new File("/" + name);
         return elFile.createNewFile();
     }
 
@@ -25,9 +25,9 @@ public class Comandos {
     }
 
     public File cd(String name) {
-        File file = new File(elFile.getAbsolutePath() + "/" + name);
+        File file = new File("/" + name);
         if (file.exists() == true) {
-            elFile = new File(elFile.getAbsoluteFile() + "/" + name);
+            return new File("/" + name);
         }
         return null;
     }
