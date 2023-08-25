@@ -4,6 +4,8 @@
  */
 package com.mycompany.cmd;
 
+import javax.swing.JTextArea;
+
 /**
  *
  * @author MARTI
@@ -16,7 +18,8 @@ public class CMD_SWING extends javax.swing.JFrame {
     public CMD_SWING() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,34 +29,49 @@ public class CMD_SWING extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        INGRESOB = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        AREATEXT = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        INGRESOB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                INGRESOBActionPerformed(evt);
+            }
+        });
+
+        AREATEXT.setBackground(new java.awt.Color(153, 153, 153));
+        AREATEXT.setColumns(20);
+        AREATEXT.setRows(5);
+        jScrollPane2.setViewportView(AREATEXT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
-            .addComponent(jTextField1)
+            .addComponent(INGRESOB)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(INGRESOB, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void INGRESOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INGRESOBActionPerformed
+      
+    }//GEN-LAST:event_INGRESOBActionPerformed
+
+    
+     private void updateTextArea(String message) {
+         AREATEXT.append(message + "\n");
+    }
     /**
      * @param args the command line arguments
      */
@@ -90,8 +108,8 @@ public class CMD_SWING extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea AREATEXT;
+    private javax.swing.JTextField INGRESOB;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
